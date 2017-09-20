@@ -10,12 +10,13 @@
 <GridPane alignment="center" hgap="10" prefHeight="461.0" prefWidth="519.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <columnConstraints>
       <ColumnConstraints />
+      <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
    </rowConstraints>
    <children>
-      <BorderPane prefHeight="340.0" prefWidth="386.0">
+      <BorderPane prefHeight="340.0" prefWidth="386.0" GridPane.columnIndex="1">
          <center>
             <Button fx:id="SendBtn" mnemonicParsing="false" onAction="#Send" text="Send" BorderPane.alignment="BOTTOM_RIGHT" />
          </center>
@@ -25,6 +26,10 @@
          <left>
             <TextArea fx:id="inputTextArea" prefHeight="189.0" prefWidth="323.0" BorderPane.alignment="TOP_RIGHT" />
          </left>
+         <bottom>
+            <Button fx:id="Connectbtn" mnemonicParsing="false" onAction="#Connect" text="Connect" BorderPane.alignment="CENTER" />
+         </bottom>
       </BorderPane>
+      <Button fx:id="Disbtn" mnemonicParsing="false" onAction="#DisConnect" text="Disconnect" />
    </children>
 </GridPane>

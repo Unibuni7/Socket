@@ -16,6 +16,10 @@ import java.io.PrintWriter;
 
 public class Controller {
 
+    private Socket s;
+    private OutputStream output;
+    private InputStream input;
+    private PrintWriter out;
 
 
 
@@ -28,45 +32,72 @@ public class Controller {
     @FXML
     private TextArea inputTextArea;
 
+    @FXML
+    Button Connectbtn;
 
 
 
-    @FXML protected void Send(ActionEvent event) {
+    @FXML
+    protected void Send(ActionEvent event) {
         try {
-            Socket s = new Socket("127.0.0.1", 8001);
 
-            displayTextArea.appendText("\n Connected");
 
-            while(true){
-                InputStream input = s.getInputStream();
-                OutputStream output = s.getOutputStream();
-
-                Scanner in = new Scanner(input);
-
-                PrintWriter out = new PrintWriter(output,true);
-
-                displayTextArea.appendText("\n Welcome: " + in.nextLine());
-
-                displayTextArea.appendText("\n Send");
 
                 String message = inputTextArea.getText();
                 out.println(message);
-
-                displayTextArea.appendText("\n  From: " + in.nextLine());
-
-
-                //s.close();
+            Scanner in = new Scanner(input);
+                displayTextArea.appendText("\n  Abdul: " + in.nextLine());
 
 
-                System.out.println("closed");
+
+
+
+
+
+
+            }catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        }
+
+
+
+
+    @FXML
+    protected void Connect(ActionEvent event) {
+        try {
+           this.s = new Socket("127.0.0.1", 8001);
+
+            displayTextArea.appendText("\n Connected");
+
+            while (true) {
+                this.s.getInputStream();
+                this.s.getOutputStream();
+
+                Scanner in = new Scanner(input);
+
+                new PrintWriter(output, true);
+
+                displayTextArea.appendText(" \n" + in.nextLine());
+
 
 
             }
         } catch (IOException ex) {
-            displayTextArea.appendText("\n Failed");
+            ex.printStackTrace();
+        }
+    }
+    @FXML protected void DisConnect(ActionEvent event) {
+
+        try {
+            this.s.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
+        System.out.println("closed");
+
+
+
     }
-
-
 }
