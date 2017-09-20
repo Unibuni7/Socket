@@ -70,19 +70,23 @@ public class Controller {
 
             displayTextArea.appendText("\n Connected");
 
-            while (true) {
-                this.s.getInputStream();
-                this.s.getOutputStream();
 
-                Scanner in = new Scanner(input);
+              this.input =  this.s.getInputStream();
+              this.output =  this.s.getOutputStream();
 
-                new PrintWriter(output, true);
+                Scanner in = new Scanner(this.input);
+
+               this.out =  new PrintWriter(this.output, true);
+                System.out.println("Virker");
 
                 displayTextArea.appendText(" \n" + in.nextLine());
 
 
 
-            }
+             // this.s.close();;
+
+
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
