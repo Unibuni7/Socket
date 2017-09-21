@@ -33,7 +33,10 @@ public class Controller {
     private TextArea inputTextArea;
 
     @FXML
-    Button Connectbtn;
+   private Button Connectbtn;
+
+    @FXML
+    private Button countButton;
 
 
 
@@ -92,6 +95,10 @@ public class Controller {
         System.out.println("closed");
 
 
+
+    }
+
+    @FXML protected void CountButton(ActionEvent event) {
 
     }
 }

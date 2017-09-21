@@ -36,16 +36,16 @@ public ClientConnection(Socket s) throws SocketException, IOException {
                     String stream = in.nextLine();
 
 
-                    if (stream.startsWith("Name: ")) {
+
+
+                    if (stream.equals("luk ned")){
+                        done = true;
+
+
+                    } else if (stream.startsWith("Name: ")) {
                         Name = new String (stream.getBytes()).replace("Name: ","");
                         out.println(Name+ ": " + stream);
 
-                    } else {
-                        out.println(Name + ": "+ stream);
-
-                    }
-                    if (stream.equals("luk ned")){
-                        done = true;
                     } else if (stream.startsWith("PUT")) {
                         addToContainer = new String(stream.getBytes()).replace("PUT","");
                         stringContainer.add(addToContainer);
@@ -69,10 +69,14 @@ public ClientConnection(Socket s) throws SocketException, IOException {
                         index = Integer.valueOf(number);
                         out.println(stringContainer.get(index));
 
-                    }else{
-                            int length = stream.length();
 
-                            out.println("Received (" + length + ") chars, message is / " + stream);
+
+
+                    }else{
+                            //int length = stream.length();
+
+                           // out.println("Received (" + length + ") chars, message is / " + stream);
+                        out.println("ERROR");
                         }
                     }
 
