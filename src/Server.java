@@ -1,9 +1,15 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Server {
+    //variables
+    private static ArrayList<String> stringContainer = new ArrayList<>();
+    private static String addToContainer;
+
 
     public static void main(String[]args) {
         try {
@@ -29,6 +35,12 @@ public class Server {
                     String stream = in.nextLine();
                     if (stream.equals("luk ned")) {
                         done = true;
+                    }else if (stream.startsWith("PUT")){
+                        addToContainer = new String(stream.getBytes()).replace("PUT","");
+                        stringContainer.add(addToContainer);
+                        for (String a: stringContainer){
+                            System.out.println(a);
+                        }
                     } else {
                         out.println(stream);
                     }
