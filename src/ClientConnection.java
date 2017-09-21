@@ -11,6 +11,8 @@ private Socket s;
     private static String addToContainer;
     private static int countValue;
     private static String Name = "Guest";
+    private static int index;
+    private static String number;
 
 public ClientConnection(Socket s) throws SocketException, IOException {
     this.s = s;
@@ -33,6 +35,7 @@ public ClientConnection(Socket s) throws SocketException, IOException {
                 while (!done && in.hasNextLine()){
                     String stream = in.nextLine();
 
+
                     if (stream.startsWith("Name: ")) {
                         Name = new String (stream.getBytes()).replace("Name: ","");
                         out.println(Name+ ": " + stream);
@@ -53,13 +56,18 @@ public ClientConnection(Socket s) throws SocketException, IOException {
 
                         }
                     }else if (stream.startsWith("COUNT")) {
-                        for (String a: stringContainer) {
-                            countValue = countValue+1;
+                        for (String a : stringContainer) {
+                            countValue = countValue + 1;
 
                         }
                         System.out.println(countValue);
-                        out.println(countValue+" Have been added");
+                        out.println(countValue + " Have been added");
                         countValue = 0;
+
+                    } else if (stream.startsWith("GET: ")) {
+                        number = new String(stream.getBytes()).replace("GET: ", "");
+                        index = Integer.valueOf(number);
+                        out.println(stringContainer.get(index));
 
                     }else{
                             int length = stream.length();
