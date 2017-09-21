@@ -9,9 +9,14 @@ public class Server {
     //variables
     private static ArrayList<String> stringContainer = new ArrayList<>();
     private static String addToContainer;
-
+    private static int countValue;
 
     public static void main(String[]args) {
+
+        //initialize variables
+        countValue = 0;
+
+        //Try block to establish server
         try {
             ServerSocket ss = new ServerSocket(8001);
             System.out.println("Server kører....");
@@ -41,7 +46,14 @@ public class Server {
                         for (String a: stringContainer){
                             System.out.println(a);
                         }
-                    } else {
+                    }else if(stream.startsWith("COUNT")) {
+
+                        for (String a: stringContainer) {
+                            countValue = countValue+1;
+
+                        }
+                        System.out.println(countValue);
+                    }else {
                         out.println(stream);
                     }
                 }
