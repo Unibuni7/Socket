@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -17,19 +19,29 @@
    </rowConstraints>
    <children>
       <BorderPane prefHeight="340.0" prefWidth="386.0" GridPane.columnIndex="1">
-         <center>
-            <Button fx:id="SendBtn" mnemonicParsing="false" onAction="#Send" text="Send" BorderPane.alignment="BOTTOM_RIGHT" />
-         </center>
          <top>
             <TextArea fx:id="displayTextArea" prefHeight="140.0" prefWidth="30.0" BorderPane.alignment="TOP_LEFT" />
          </top>
          <left>
-            <TextArea fx:id="inputTextArea" prefHeight="189.0" prefWidth="323.0" BorderPane.alignment="TOP_RIGHT" />
+            <TextArea fx:id="inputTextArea" prefHeight="200.0" prefWidth="368.0" BorderPane.alignment="TOP_RIGHT" />
          </left>
-         <bottom>
-            <Button fx:id="Connectbtn" mnemonicParsing="false" onAction="#Connect" text="Connect" BorderPane.alignment="CENTER" />
-         </bottom>
       </BorderPane>
-      <Button fx:id="Disbtn" mnemonicParsing="false" onAction="#DisConnect" text="Disconnect" />
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Button fx:id="Disbtn" layoutX="23.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#Disconnect" text="Disconnect" />
+                  <Button fx:id="Connectbtn" layoutX="25.0" layoutY="69.0" mnemonicParsing="false" onAction="#Connect" prefHeight="31.0" prefWidth="94.0" text="Connect" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Button fx:id="SendBtn" layoutX="27.0" layoutY="14.0" mnemonicParsing="false" onAction="#Send" prefHeight="31.0" prefWidth="85.0" text="Send" />
+                  <Button fx:id="putButton" layoutX="27.0" layoutY="67.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="85.0" text="Put" />
+                  <Button fx:id="countButton" layoutX="27.0" layoutY="110.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="85.0" text="Count" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
    </children>
 </GridPane>

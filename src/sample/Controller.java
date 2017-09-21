@@ -81,7 +81,7 @@ public class Controller {
             ex.printStackTrace();
         }
     }
-    @FXML protected void DisConnect(ActionEvent event) {
+    @FXML protected void Disconnect(ActionEvent event) {
 
         try {
             this.s.close();
