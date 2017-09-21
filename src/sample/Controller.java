@@ -41,7 +41,7 @@ public class Controller {
     protected void Send(ActionEvent event) {
         try {
                 String message = inputTextArea.getText();
-                /*out.println(message);*/
+                out.println(message);
                 Scanner in = new Scanner(input);
                 displayTextArea.appendText("\n  Abdul: " + in.nextLine());
 
