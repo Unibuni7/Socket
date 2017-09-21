@@ -35,6 +35,9 @@ public class Controller {
     @FXML
     Button Connectbtn;
 
+    @FXML
+    Button putButton;
+
 
 
     @FXML
@@ -93,5 +96,21 @@ public class Controller {
 
 
 
+    }
+
+    @FXML
+    protected void put(){
+        try {
+            String putter = "PUT "+inputTextArea.getText();
+            this.input = this.s.getInputStream();
+            this.output = this.s.getOutputStream();
+            Scanner in = new Scanner(this.input);
+            this.out = new PrintWriter(this.output, true);
+
+            out.println(putter);
+
+        }catch (Exception e) {
+            System.out.println("Error: "+ e);
+        }
     }
 }
