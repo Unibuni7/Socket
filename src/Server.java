@@ -53,6 +53,7 @@ public class Server {
 
                         }
                         System.out.println(countValue);
+                        countValue = 0;
                     }else {
                         out.println(stream);
                     }
