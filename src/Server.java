@@ -10,6 +10,7 @@ public class Server {
     private static ArrayList<String> stringContainer = new ArrayList<>();
     private static String addToContainer;
     private static int countValue;
+    private static String Name = "Guest";
 
     public static void main(String[]args) {
 
@@ -38,6 +39,15 @@ public class Server {
                 while (!done && in.hasNextLine()) {
 
                     String stream = in.nextLine();
+
+                    if (stream.startsWith("Name: ")) {
+                        Name = new String (stream.getBytes()).replace("Name: ","");
+                        out.println(Name+ ": " + stream);
+
+                    } else {
+                        out.println(Name + ": "+ stream);
+
+                    }
                     if (stream.equals("luk ned")) {
                         done = true;
                     }else if (stream.startsWith("PUT")){
@@ -58,8 +68,6 @@ public class Server {
                         System.out.println(countValue);
                         out.println(countValue+" Have been added");
                         countValue = 0;
-                    }else {
-                        out.println(stream);
                     }
                 }
 
