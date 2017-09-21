@@ -43,8 +43,11 @@ public class Server {
                     }else if (stream.startsWith("PUT")){
                         addToContainer = new String(stream.getBytes()).replace("PUT","");
                         stringContainer.add(addToContainer);
+                        out.println("added: "+addToContainer);
+
                         for (String a: stringContainer){
                             System.out.println(a);
+
                         }
                     }else if(stream.startsWith("COUNT")) {
 
@@ -53,6 +56,7 @@ public class Server {
 
                         }
                         System.out.println(countValue);
+                        out.println(countValue+" Have been added");
                         countValue = 0;
                     }else {
                         out.println(stream);

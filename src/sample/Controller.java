@@ -40,25 +40,15 @@ public class Controller {
     @FXML
     protected void Send(ActionEvent event) {
         try {
-
-
-
                 String message = inputTextArea.getText();
-                out.println(message);
-            Scanner in = new Scanner(input);
+                /*out.println(message);*/
+                Scanner in = new Scanner(input);
                 displayTextArea.appendText("\n  Abdul: " + in.nextLine());
-
-
-
-
-
-
-
 
             }catch (Exception ex) {
             ex.printStackTrace();
         }
-        }
+    }
 
 
 
