@@ -98,7 +98,7 @@ public class Controller {
 
     }
 
-    @FXML protected void CountButton(ActionEvent event) {
+   // @FXML protected void CountButton(ActionEvent event) {
 
-    }
+   // }
 }
