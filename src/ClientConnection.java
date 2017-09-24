@@ -49,7 +49,7 @@ public ClientConnection(Socket s) throws SocketException, IOException {
                     } else if (stream.startsWith("PUT")) {
                         addToContainer = new String(stream.getBytes()).replace("PUT","");
                         stringContainer.add(addToContainer);
-                        out.println("added: "+addToContainer);
+                        out.println(Name+" added: "+addToContainer);
 
                         for (String a: stringContainer){
                             System.out.println(a);

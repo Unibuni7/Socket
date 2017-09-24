@@ -11,10 +11,14 @@ import java.util.Scanner;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.awt.Robot;
+import java.awt.AWTException;
+import java.awt.event.KeyEvent;
 
 
 
 public class Controller {
+
 
     private Socket s;
     private OutputStream output;
@@ -33,10 +37,10 @@ public class Controller {
     private TextArea inputTextArea;
 
     @FXML
-   private Button Connectbtn;
+    Button Connectbtn;
 
     @FXML
-    private Button countButton;
+    Button putButton;
 
 
 
@@ -46,7 +50,7 @@ public class Controller {
                 String message = inputTextArea.getText();
                 out.println(message);
                 Scanner in = new Scanner(input);
-                displayTextArea.appendText("\n  Abdul: " + in.nextLine());
+                displayTextArea.appendText("\n " + in.nextLine());
 
             }catch (Exception ex) {
             ex.printStackTrace();
@@ -98,7 +102,39 @@ public class Controller {
 
     }
 
-   // @FXML protected void CountButton(ActionEvent event) {
 
-   // }
+    @FXML protected void Count(ActionEvent event) {
+
+
+       try {
+           this.input = this.s.getInputStream();
+           this.output = this.s.getOutputStream();
+           Scanner in = new Scanner(this.input);
+           this.out = new PrintWriter(this.output,true);
+           this.out.println("COUNT");
+           displayTextArea.appendText(in.nextLine() + " \n");
+
+       } catch (IOException ex) {
+
+       }
+
+
+    }
+
+    @FXML
+    protected void Put(){
+        try {
+            String putter = "PUT "+inputTextArea.getText();
+            this.input = this.s.getInputStream();
+            this.output = this.s.getOutputStream();
+            Scanner in = new Scanner(this.input);
+            this.out = new PrintWriter(this.output, true);
+
+            out.println(putter);
+
+        }catch (Exception e) {
+            System.out.println("Error: "+ e);
+        }
+    }
+
 }
