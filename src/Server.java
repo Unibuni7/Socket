@@ -10,7 +10,11 @@ public class Server {
     private static ArrayList<String> stringContainer = new ArrayList<>();
     private static String addToContainer;
     private static int countValue;
-    private static String Name = "Guest";
+    private static String name = "Guest";
+
+    public static String getName() {
+        return name;
+    }
 
     public static void main(String[]args) {
 
@@ -41,20 +45,19 @@ public class Server {
                     String stream = in.nextLine();
 
                     if (stream.startsWith("Name: ")) {
-                        Name = new String (stream.getBytes()).replace("Name: ","");
-                        out.println(Name+ ": " + stream);
+                        name = new String (stream.getBytes()).replace("Name: ","");
+                        out.println(name+ ": " + stream);
 
                     } else {
-                        out.println(Name + ": "+ stream);
+                        out.println(name + ": "+ stream);
 
                     }
                     if (stream.equals("luk ned")) {
                         done = true;
                     }else if (stream.startsWith("PUT")){
                         addToContainer = new String(stream.getBytes()).replace("PUT","");
-                        stringContainer.add(addToContainer);
+                        stringContainer.add(name+" "+addToContainer);
                         out.println("added: "+addToContainer);
-
                         for (String a: stringContainer){
                             System.out.println(a);
 
