@@ -1,3 +1,5 @@
+package Server;
+
 import java.io.IOException;
 import java.net.Socket;
 import java.net.ServerSocket;
@@ -9,7 +11,7 @@ public class ThreadedServer {
         ServerSocket ss;
         try {
             ss =  new ServerSocket(8001);
-            System.out.println("Server kører....");
+            System.out.println("Server.Server kører....");
             while (true) {
                 Socket incoming = ss.accept();
 

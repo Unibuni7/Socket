@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.util.Duration;
 
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -72,7 +73,7 @@ public class Controller {
     Timeline fivesec = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-displayTextArea.appendText("Abdul");
+
             try {
                 input = s.getInputStream();
                 output = s.getOutputStream();
@@ -169,6 +170,9 @@ displayTextArea.appendText("Abdul");
 
     @FXML protected void Count(ActionEvent event) {
 
+         String first = null;
+         int second = 1;
+
 
 
        try {
@@ -177,7 +181,8 @@ displayTextArea.appendText("Abdul");
            Scanner in = new Scanner(this.input);
            this.out = new PrintWriter(this.output,true);
            this.out.println("COUNT");
-           displayTextArea.appendText(in.nextLine() + " \n");
+          first = in.nextLine();
+           displayTextArea.appendText(first + " \n");
 
        } catch (IOException ex) {
 

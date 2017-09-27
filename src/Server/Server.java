@@ -1,3 +1,5 @@
+package Server;
+
 import java.io.*;
 import java.lang.reflect.Array;
 import java.net.ServerSocket;
@@ -24,7 +26,7 @@ public class Server {
         //Try block to establish server
         try {
             ServerSocket ss = new ServerSocket(8001);
-            System.out.println("Server kører....");
+            System.out.println("Server.Server kører....");
 
             while(true) {
                 Socket s = ss.accept();
