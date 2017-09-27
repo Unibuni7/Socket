@@ -10,7 +10,7 @@ private Socket s;
     private static ArrayList<String> stringContainer = new ArrayList<>();
     private static String addToContainer;
     private static int countValue;
-    private static String Name = "Guest";
+    private static String name = "Guest";
     private static int index;
     private static String number;
 
@@ -43,13 +43,13 @@ public ClientConnection(Socket s) throws SocketException, IOException {
 
 
                     } else if (stream.startsWith("Name: ")) {
-                        Name = new String (stream.getBytes()).replace("Name: ","");
-                        out.println(Name+ ": " + stream);
+                        name = new String (stream.getBytes()).replace("Name: ","");
+                        out.println(name+ ": " + stream);
 
                     } else if (stream.startsWith("PUT")) {
                         addToContainer = new String(stream.getBytes()).replace("PUT","");
-                        stringContainer.add(addToContainer);
-                        out.println(Name+" added: "+addToContainer);
+                        stringContainer.add(name+" added "+addToContainer);
+                        out.println(name+" added: "+addToContainer);
 
                         for (String a: stringContainer){
                             System.out.println(a);
