@@ -15,6 +15,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.Time;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -28,13 +29,18 @@ import java.util.TimerTask;
 
 public class Controller {
 
+    // In this class we control our gui.
 
 
 
-    public Socket s;
-    public OutputStream output;
-    public InputStream input;
-    public PrintWriter out;
+    // we start with initialising our varibles
+    private Socket s;
+    private OutputStream output;
+    private InputStream input;
+    private PrintWriter out;
+    private int counter = 0;
+    private int oldcount = 0;
+
 
 
 
@@ -70,24 +76,30 @@ public class Controller {
         Timer timer = new Timer("timer");
         timer.schedule(timerTask,1000,1000);
     }*/
-    Timeline fivesec = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
+   /* Timeline sevensec = new Timeline(new KeyFrame(Duration.seconds(10), new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-
+             try {
+           input = s.getInputStream();
+           output = s.getOutputStream();
+           Scanner in = new Scanner(input);
+           out = new PrintWriter(output,true);
+           out.println("COUNT");
             try {
-                input = s.getInputStream();
-                output = s.getOutputStream();
-                Scanner in = new Scanner(input);
-                out = new PrintWriter(output,true);
-                out.println("COUNT");
-                displayTextArea.appendText(in.nextLine() + " \n");
+                displayTextArea.appendText(in.next() + " \n");
+                displayTextArea.appendText(in.next() + " \n");
+            }catch (NoSuchElementException e){
+
+                e.printStackTrace();
+            }
+
+       } catch (IOException ex) {
+
+       }
+        }
 
 
-
-            } catch (IOException ex) {
-
-            }}
-    }));
+        }));*/
 
 
 
@@ -140,8 +152,7 @@ public class Controller {
                 System.out.println("Virker");
 
                 displayTextArea.appendText(" \n" + in.nextLine());
-                fivesec.setCycleCount(Timeline.INDEFINITE);
-           fivesec.play();
+
 
 
 
@@ -170,26 +181,30 @@ public class Controller {
 
     @FXML protected void Count(ActionEvent event) {
 
-         String first = null;
-         int second = 1;
+
+        try {
+            this.input = this.s.getInputStream();
+            this.output = this.s.getOutputStream();
+            Scanner in = new Scanner(this.input);
+            this.out = new PrintWriter(this.output, true);
 
 
+            this.out.println("COUNT");
+            displayTextArea.appendText(in.nextLine() + " \n");
 
-       try {
-           this.input = this.s.getInputStream();
-           this.output = this.s.getOutputStream();
-           Scanner in = new Scanner(this.input);
-           this.out = new PrintWriter(this.output,true);
-           this.out.println("COUNT");
-          first = in.nextLine();
-           displayTextArea.appendText(first + " \n");
+            if (oldcount != counter) {
+                for (int i = oldcount; i < counter; i++){
+                    out.println("GET: " + i);
+                }
+            }
+            oldcount = counter;
+            } catch(IOException ex){
 
-       } catch (IOException ex) {
-
-       }
+            }
 
 
-    }
+        }
+
 
     @FXML
     protected void Put(){
@@ -201,6 +216,10 @@ public class Controller {
             this.out = new PrintWriter(this.output, true);
 
             out.println(putter);
+            counter++;
+
+            /*  sevensec.setCycleCount(Timeline.INDEFINITE);
+           sevensec.play();*/
 
         }catch (Exception e) {
             System.out.println("Error: "+ e);

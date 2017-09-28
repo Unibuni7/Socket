@@ -19,6 +19,8 @@ import java.util.Timer;
 
 public class Main extends Application {
 
+    private static Controller c = new Controller();
+
 
 
     @Override
@@ -28,9 +30,10 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 500, 500));
         primaryStage.show();
 
+
     }
 
-     private static Controller c = new Controller();
+
 
 
     public static void main(String[] args) {
