@@ -1,6 +1,6 @@
 package sample;
 
-import javafx.animation.Animation;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -12,19 +12,12 @@ import javafx.util.Duration;
 
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Time;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.awt.Robot;
-import java.awt.AWTException;
-import java.awt.event.KeyEvent;
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 
 public class Controller {
@@ -33,7 +26,7 @@ public class Controller {
 
 
 
-    // we start with initialising our varibles
+    // we start with initialising our variables
     private Socket s;
     private OutputStream output;
     private InputStream input;
@@ -44,9 +37,9 @@ public class Controller {
 
 
 
-
+// Here are all the elements from JAVAFX that we are going to use in the controller.
     @FXML
-    public TextArea displayTextArea;
+    private TextArea displayTextArea;
 
     @FXML
     private Button SendBtn;
@@ -60,26 +53,15 @@ public class Controller {
     @FXML
     Button putButton;
 
-   /* protected void runTimer() {
-
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                 displayTextArea.appendText("Abdul");
-
-            }
 
 
-
-
-        };
-        Timer timer = new Timer("timer");
-        timer.schedule(timerTask,1000,1000);
-    }*/
-   /* Timeline sevensec = new Timeline(new KeyFrame(Duration.seconds(10), new EventHandler<ActionEvent>() {
+  // Here is our timer it works fine, in the beginning we wanted to use TimerTask but we found out the for JAVAFX we have to use Timeline.
+    // Timeline works fine the problem we have is with the code for COUNT.
+    // we call the Timeline method from the PUT button method.
+    Timeline sevensec = new Timeline(new KeyFrame(Duration.seconds(7), new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-             try {
+         /*    try {
            input = s.getInputStream();
            output = s.getOutputStream();
            Scanner in = new Scanner(input);
@@ -95,31 +77,19 @@ public class Controller {
 
        } catch (IOException ex) {
 
-       }
+       }*/
+         // we have problems with the code.
         }
 
 
-        }));*/
+        }));
 
 
-
-
-
-    private void Timer() throws InterruptedException {
-
-        //   Timer timer = new Timer();
-
-        //  sample.Timer time = new sample.Timer();
-
-        // timer.scheduleAtFixedRate(time,5000,5000); }
-
-
-    }
 
 
     @FXML
     protected void Send(ActionEvent event) throws InterruptedException {
-     //   Timer();
+
         try {
                 String message = inputTextArea.getText();
                 out.println(message);
@@ -156,7 +126,7 @@ public class Controller {
 
 
 
-             // this.s.close();;
+
 
 
 
@@ -173,9 +143,6 @@ public class Controller {
         }
 
         System.out.println("closed");
-
-
-
     }
 
 
@@ -192,15 +159,10 @@ public class Controller {
             this.out.println("COUNT");
             displayTextArea.appendText(in.nextLine() + " \n");
 
-            if (oldcount != counter) {
-                for (int i = oldcount; i < counter; i++){
-                    out.println("GET: " + i);
-                }
-            }
-            oldcount = counter;
-            } catch(IOException ex){
 
-            }
+        }catch (Exception e) {
+
+        }
 
 
         }
@@ -218,8 +180,9 @@ public class Controller {
             out.println(putter);
             counter++;
 
-            /*  sevensec.setCycleCount(Timeline.INDEFINITE);
-           sevensec.play();*/
+            // here we start our timer
+              sevensec.setCycleCount(Timeline.INDEFINITE);
+           sevensec.play();
 
         }catch (Exception e) {
             System.out.println("Error: "+ e);
