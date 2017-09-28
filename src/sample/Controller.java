@@ -31,6 +31,7 @@ public class Controller {
     private OutputStream output;
     private InputStream input;
     private PrintWriter out;
+    private Scanner in;
     private int counter = 0;
     private int oldcount = 0;
 
@@ -61,25 +62,25 @@ public class Controller {
     Timeline sevensec = new Timeline(new KeyFrame(Duration.seconds(7), new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-         /*    try {
-           input = s.getInputStream();
-           output = s.getOutputStream();
-           Scanner in = new Scanner(input);
-           out = new PrintWriter(output,true);
-           out.println("COUNT");
             try {
-                displayTextArea.appendText(in.next() + " \n");
-                displayTextArea.appendText(in.next() + " \n");
-            }catch (NoSuchElementException e){
+                input = s.getInputStream();
+                output = s.getOutputStream();
+                in = new Scanner(input);
+                out = new PrintWriter(output, true);
 
+            }catch (Exception e) {
                 e.printStackTrace();
             }
 
-       } catch (IOException ex) {
+            out.println("COUNT");
+            displayTextArea.appendText(in.nextLine() + " \n");
+            displayTextArea.appendText(in.nextLine() + "\n");
+            displayTextArea.appendText(in.nextLine()+ "\n");
 
-       }*/
-         // we have problems with the code.
+
         }
+         // we have problems with the code.
+
 
 
         }));
@@ -152,17 +153,17 @@ public class Controller {
         try {
             this.input = this.s.getInputStream();
             this.output = this.s.getOutputStream();
-            Scanner in = new Scanner(this.input);
+            in = new Scanner(this.input);
             this.out = new PrintWriter(this.output, true);
 
-
-            this.out.println("COUNT");
-            displayTextArea.appendText(in.nextLine() + " \n");
-
-
         }catch (Exception e) {
-
+                e.printStackTrace();
         }
+
+        this.out.println("COUNT");
+        displayTextArea.appendText(in.nextLine() + " \n");
+        displayTextArea.appendText(in.nextLine() + "\n");
+        displayTextArea.appendText(in.nextLine()+ "\n");
 
 
         }
