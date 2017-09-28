@@ -74,12 +74,16 @@ public class Controller {
 
             out.println("COUNT");
             displayTextArea.appendText(in.nextLine() + " \n");
-            displayTextArea.appendText(in.nextLine() + "\n");
-            displayTextArea.appendText(in.nextLine()+ "\n");
+            if (oldcount != counter) {
+                for (int i = oldcount; i < counter; i++) {
+                    displayTextArea.appendText(in.nextLine() + " \n");
+                }
+            }
+            oldcount = counter;
 
 
         }
-         // we have problems with the code.
+
 
 
 
@@ -162,8 +166,12 @@ public class Controller {
 
         this.out.println("COUNT");
         displayTextArea.appendText(in.nextLine() + " \n");
-        displayTextArea.appendText(in.nextLine() + "\n");
-        displayTextArea.appendText(in.nextLine()+ "\n");
+        if (oldcount != counter) {
+            for (int i = oldcount; i < counter; i++) {
+                displayTextArea.appendText(in.nextLine() + " \n");
+            }
+        }
+        oldcount = counter;
 
 
         }
